@@ -38,9 +38,9 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        <div class="h2 text-xs font-weight-bold text-success text-uppercase mb-1">
                             Completed Tasks</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{count($tasks->where('status','Completed'))}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -56,9 +56,9 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                        <div class=" h2 text-xs font-weight-bold text-warning text-uppercase mb-1">
                             In Pogress</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{count($tasks->where('status','In Progress'))}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -91,9 +91,21 @@
 
             <tr>
                 <td>{{$task->id}}</td>
-                <td>{{$task->title}}</td>
+                <td class="text-ucfirst">{{ ucfirst($task->title) }}</td>
                 <td>{{$task->description}}</td>
-                <td>{{$task->progress}}</td>
+                <td>
+                   @if ($task->progress >=90)
+                       <div class="progress">
+                        <div class="progress-bar bg-success" style="width:{{$task->progress}}%"></div>
+                    </div>
+                   @else
+                       <div class="progress">
+                        <div class="progress-bar bg-warning" style="width:{{$task->progress}}%"></div>
+                    </div>
+                   @endif
+
+
+            </td>
                 <td>@if ($task->status === 'Completed')
                     <h5><span class="badge badge-success">Completed</span></h5>
 
@@ -102,7 +114,7 @@
 
                 @endif</td>
 
-                <td><button class="btn btn-primary" type="button">Edit</button></td>
+                <td><a href="{{ route('task.edit'),$task->id }}"></a><a href="{{ route('task.edit'),$task->id }}">Delete</a></td>
             </tr>
             @endforeach
         </tbody>
