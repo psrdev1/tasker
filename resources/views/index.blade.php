@@ -77,7 +77,7 @@
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
-                <th>#</th>
+                <th>#Id</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Progress</th>
@@ -92,7 +92,7 @@
             <tr>
                 <td>{{$task->id}}</td>
                 <td class="text-ucfirst">{{ ucfirst($task->title) }}</td>
-                <td>{{$task->description}}</td>
+                <td>{{ucfirst($task->description)}}</td>
                 <td>
                    @if ($task->progress >=90)
                        <div class="progress">
@@ -114,9 +114,13 @@
 
                 @endif</td>
 
-                <td>
-                    <a href="{{ route('task.edit',$task->id) }}"> <i class="fas fa-edit fa-2x  text-primary-300"></i> </a>
-                    <a href="{{ route('task.destroy',$task->id) }}" class="text-danger mx-5"><i class="fas fa-trash fa-2x text-red"></i></a>
+                <td class="d-flex ">
+                    <a href="{{ route('task.edit',$task->id) }}" class="btn btn-primary"> <i class="fas fa-edit  text-primary-300"></i> </a>
+                    <form action="{{ route('task.destroy',$task->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('delete')
+                    <button type="submit" class=" btn btn-danger mx-2"><i class="fas fa-trash "></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach
