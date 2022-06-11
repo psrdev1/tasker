@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('main')
-<h3>this is home page</h3>
+@include('layouts.template')
+
 
 @endsection
