@@ -114,7 +114,10 @@
 
                 @endif</td>
 
-                <td><a href="{{ route('task.edit',$task->id) }}" class="btn btn-primary">Edit</a><a href="{{ route('task.destroy',$task->id) }}" class="btn btn-danger">Delete</a></td>
+                <td>
+                    <a href="{{ route('task.edit',$task->id) }}"> <i class="fas fa-edit fa-2x  text-primary-300"></i> </a>
+                    <a href="{{ route('task.destroy',$task->id) }}" class="text-danger mx-5"><i class="fas fa-trash fa-2x text-red"></i></a>
+                </td>
             </tr>
             @endforeach
         </tbody>
