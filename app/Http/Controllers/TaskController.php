@@ -59,7 +59,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+
+       return view('task.edit')->with('task', $task);
     }
 
     /**
@@ -82,6 +83,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+       return $task;
     }
 }
