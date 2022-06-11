@@ -61,7 +61,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{count($tasks->where('status','In Progress'))}}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-timer-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
 
                 @endif</td>
 
-                <td><a href="{{ route('task.edit'),$task->id }}"></a><a href="{{ route('task.edit'),$task->id }}">Delete</a></td>
+                <td>Delete</td>
             </tr>
             @endforeach
         </tbody>
